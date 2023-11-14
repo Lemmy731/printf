@@ -23,9 +23,8 @@ int printf_char(va_list args)
 int printf_string(va_list args)
 {
 	int count;
-	char *str;
 
-	str = va_arg(args, char *);
+	const char *str = va_arg(args, const char *);
 
 	count = 0;
 
