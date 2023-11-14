@@ -3,7 +3,7 @@
  * printf_char - Print a character.
  * @args: The va_list argument.
  *
- * Return: 1 on success.
+ * Return: The number of characters printed.
  */
 int printf_char(va_list args)
 {
@@ -11,8 +11,7 @@ int printf_char(va_list args)
 
 	c = va_arg(args, int);
 
-	_putchar(c);
-	return (1);
+	return (_putchar(c));
 }
 /**
  * printf_string - Print a string.
