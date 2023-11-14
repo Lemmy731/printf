@@ -1,23 +1,37 @@
 #include "main.h"
 /**
- * print_character - Print a single character.
- * @c: The character to be printed.
+ * printf_char - Print a character.
+ * @args: The va_list argument.
+ *
+ * Return: The number of characters printed.
  */
-void print_character(char c)
+int printf_char(va_list args)
 {
-	_putchar(c);
+	char c = va_arg(args, int);
+
+	return (_putchar(c));
 }
 /**
- * print_string - Print a null-terminated string.
- * @str: The string to be printed.
+ * printf_string - Print a string.
+ * @args: The va_list argument.
+ *
+ * Return: The number of characters printed.
  */
-void print_string(const char *str)
+int printf_string(va_list args)
 {
+	int count;
+	const char *str = va_arg(args, const char *);
+
+	count = 0;
+
+	if (str == NULL)
+		str = "(null)";
 	while (*str != '\0')
 	{
-		_putchar(*str);
+		count += _putchar(*str);
 		str++;
 	}
+	return (count);
 }
 /**
  * _printf - Print formatted output.
@@ -29,7 +43,7 @@ void print_string(const char *str)
 int _printf(const char *format, ...)
 {
 	va_list args;
-	unsigned int count;
+	int count;
 
 	va_start(args, format);
 
@@ -44,24 +58,23 @@ int _printf(const char *format, ...)
 			switch (*format)
 			{
 				case 'c':
-					print_character(va_arg(args, int));
+					count += printf_char(args);
 					break;
 				case 's':
-					print_string(va_arg(args, const char *));
+					count += printf_string(args);
 					break;
 				case '%':
-					_putchar('%');
+					count += _putchar('%');
 					break;
 				default:
-					_putchar('%');
-					_putchar(*format);
-					count += 2;
+					count += _putchar('%');
+					count += _putchar(*format);
+					break;
 			}
 		}
 		else
 		{
-			_putchar(*format);
-			count++;
+			count += _putchar(*format);
 		}
 		format++;
 	}
