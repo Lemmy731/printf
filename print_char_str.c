@@ -37,50 +37,11 @@ int printf_string(va_list args)
 	return (count);
 }
 /**
- * _printf - Print formatted output.
- * @format: Format string with %c, %s, and %% specifiers.
- * @...: Variable arguments corresponding to the format.
-*
- * Return: Number of characters printed.
+ * print_percent - Print the percent sign (%).
+ * Return: The number of characters printed (always 1).
  */
-int _printf(const char *format, ...)
+int print_percent(void)
 {
-	va_list args;
-	int count;
-
-	va_start(args, format);
-
-	count = 0;
-
-	while (*format != '\0')
-	{
-		if (*format == '%' && *(format + 1) != '\0')
-		{
-			format++;
-
-			switch (*format)
-			{
-				case 'c':
-					count += printf_char(args);
-					break;
-				case 's':
-					count += printf_string(args);
-					break;
-				case '%':
-					count += _putchar('%');
-					break;
-				default:
-					count += _putchar('%');
-					count += _putchar(*format);
-					break;
-			}
-		}
-		else
-		{
-			count += _putchar(*format);
-		}
-		format++;
-	}
-	va_end(args);
-	return (count);
+	_putchar('%');
+	return (1);
 }
