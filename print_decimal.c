@@ -20,7 +20,7 @@ int print_decimal(va_list args)
 		number = -number;
 		input = -input;
 		last_digit = -last_digit;
-		character_count++
+		character_count++;
 	}
 	if (number > 0)
 	{
