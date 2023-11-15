@@ -10,13 +10,13 @@ int print_binary(va_list args)
 	int flag = 0;
 	int count = 0;
 	int i, mask = 1, binary_digit;
-
 	unsigned int number = va_arg(args, unsigned int);
 	unsigned int bit;
 
 	for (i = 0; i < 32; i++)
 	{
-	bit = ((mask << (31 - i)) & number);
+		bit = ((mask << (31 - i)) & number);
+
 		if (bit >> (31 - i))
 			flag = 1;
 		if (flag)
@@ -33,37 +33,3 @@ int print_binary(va_list args)
 	}
 	return (count);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -4,6 +4,8 @@
 #include <stdarg.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <stdio.h>
+#include <limits.h>
 
 /**
  * struct format - Printf conversion specifier
@@ -17,14 +19,25 @@ typedef struct format
 {
     char *specifier;
     int (*handler)();
-} format;
+} convert;
 
 int _putchar(char c);
 int _printf(const char *format, ...);
+int print_decimal(va_list args);
+int print_integer(va_list args);
+int print_binary(va_list args);
 int printf_char(va_list args);
 int printf_string(va_list args);
-int print_signed_integer(int num);
-int print_binary(unsigned int num);
-int print_integer(int num);
+int print_percent(void);
+int print_unsigned(va_list args);
+int print_octal(va_list args);
+int print_hex_lower(va_list args);
+int print_hex_upper(va_list args);
+int print_hex_lower_extension(unsigned long int number);
+int print_hex_upper_extension(unsigned int value);
+int print_non_printable_string(va_list args);
+int print_pointer(va_list args);
+
+
 
 #endif

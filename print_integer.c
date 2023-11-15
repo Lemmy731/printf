@@ -1,44 +1,35 @@
 #include "main.h"
 
 /**
- * print_integer - Prints an integer.
+ * print_binary - Prints binary representation of an unsigned int.
  * @args: Argument to print.
  * Return: Number of characters printed.
  */
-int print_integer(va_list args)
+int print_binary(va_list args)
 {
-	int input = va_arg(args, int);
-	int number, last_digit = input % 10, digit, exponent = 1;
-	int character_count = 1;
+	int flag = 0;
+	int count = 0;
+	int i, mask = 1, binary_digit;
+	unsigned int number = va_arg(args, unsigned int);
+	unsigned int bit;
 
-	input = input / 10;
-	number = input;
+	for (i = 0; i < 32; i++)
+	{
+		bit = ((mask << (31 - i)) & number);
 
-	if (last_digit < 0)
-	{
-		_putchar('-');
-		number = -number;
-		input = -input;
-		last_digit = -last_digit;
-		character_count++;
-		}
-	if (number > 0)
-	{
-		while (number / 10 != 0)
+		if (bit >> (31 - i))
+			flag = 1;
+		if (flag)
 		{
-			exponent = exponent * 10;
-			number = number / 10;
-		}
-		number = input;
-		while (exponent > 0)
-		{
-			digit = number / exponent;
-			_putchar(digit + '0');
-			number = number - (digit * exponent);
-			exponent = exponent / 10;
-			character_count++;
+			binary_digit = bit >> (31 - i);
+			_putchar(binary_digit + '0');
+			count++;
 		}
 	}
-	_putchar(last_digit + '0');
-	return (character_count);
+	if (count == 0)
+	{
+		count++;
+		_putchar('0');
+	}
+	return (count);
 }
